@@ -20,13 +20,13 @@ class Grid {
         ctxt.beginPath();
         
         // Draw the grid
-        for (let i = 0; i <= 3; i++) {
+        for (let i = 1; i < 3; i++) {
             // Horizontal lines
             ctxt.moveTo(0, i * height);
             ctxt.lineTo(RESOLUTION, i * height);
         }
 
-        for (let i = 0; i <= 3; i++) {
+        for (let i = 1; i < 3; i++) {
             // Vertical lines
             ctxt.moveTo(i * width, 0);
             ctxt.lineTo(i * width, RESOLUTION);
