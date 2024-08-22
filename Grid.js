@@ -6,6 +6,13 @@ class Grid {
             [new EmptyCell(), new EmptyCell(), new EmptyCell()]
         ];
 
+        this.values = [ //to calculate the winner
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+        ];
+        
+        this.score = new Score(this); // transfer the grid to the function
     }
 
     /**
@@ -45,11 +52,31 @@ class Grid {
         if (this.cells[y][x] instanceof EmptyCell) { // Only allow moves in empty cells
             if (this.isOTurn === true ) {
                 this.cells[y][x] = new SymbolO();
+                this.values[y][x] = -1; // -1 for O
                 this.isOTurn = false;
             } else {
                 this.cells[y][x] = new SymbolX();
+                this.values[y][x] = 1; // 1 for X
                 this.isOTurn = true;
             }
         }
-    }    
+        const result = this.score.checkWin();
+        if (result) {
+            this.endGame(result); // display the winner
+        }
+    } 
+    
+    endGame(result) {
+        if (result === "X") {
+            document.getElementById("winner").innerHTML = "X WINSSSSS!!!"; 
+        } else if (result === "O") {
+            document.getElementById("winner").style.color = "#ffb3c6";
+            document.getElementById("winner").innerHTML = "O WINSSSSS!!!"; 
+        } else if (result === "draw") {
+            document.getElementById("winner").style.color = "#000";
+            document.getElementById("winner").innerHTML = "It's a draw :O!"; 
+        }
+        document.getElementById("winner").style.display = "block"; 
+        document.getElementById("restart-btn").style.display = "block"; 
+    }
 }

@@ -9,6 +9,7 @@ window.onload = function() {
     canvas.width = RESOLUTION;
     canvas.height = RESOLUTION;
     ctxt = canvas.getContext('2d');
+    document.getElementById("restart-btn").style.display = "none"; 
 
     game = new Game(); //new Object
 
@@ -20,9 +21,20 @@ window.onload = function() {
         game.turn(x, y);
     })
 
+    // Add event listener for restart button
+    document.getElementById("restart-btn").addEventListener('click', function() {
+        restartGame();
+    });
+
     loop();
 };
 
+// Restart the game by reinitializing the game object
+function restartGame() {
+    game = new Game(); // Reset the game instance
+    document.getElementById("restart-btn").style.display = "none";
+    document.getElementById("winner").style.display = "none"; 
+}
 function loop() {
     ctxt.clearRect(0, 0, RESOLUTION, RESOLUTION); //clear screen
 
