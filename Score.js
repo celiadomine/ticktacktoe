@@ -43,7 +43,7 @@ class Score {
     }
 
     isDraw() {
-        // If there are no more 0s in the grid, it's a draw
+        // no more 0 = draw
         const values = this.grid.values;
         return values.flat().every(value => value !== 0);
     }

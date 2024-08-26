@@ -12,6 +12,7 @@ class Grid {
             [0, 0, 0]
         ];
         
+        this.gameOver = false;
         this.score = new Score(this); // transfer the grid to the function
     }
 
@@ -49,6 +50,9 @@ class Grid {
     }
 
     turn(x, y) {
+        if (this.gameOver) {
+            return; // STAHP DA GAMEEEE
+        }
         if (this.cells[y][x] instanceof EmptyCell) { // Only allow moves in empty cells
             if (this.isOTurn === true ) {
                 this.cells[y][x] = new SymbolO();
@@ -78,5 +82,6 @@ class Grid {
         }
         document.getElementById("winner").style.display = "block"; 
         document.getElementById("restart-btn").style.display = "block"; 
+        this.gameOver = true;
     }
 }
