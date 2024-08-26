@@ -72,6 +72,7 @@ class Grid {
     
     endGame(result) {
         if (result === "X") {
+            document.getElementById("winner").style.color = "#fb6f92";
             document.getElementById("winner").innerHTML = "X WINSSSSS!!!"; 
         } else if (result === "O") {
             document.getElementById("winner").style.color = "#ffb3c6";
